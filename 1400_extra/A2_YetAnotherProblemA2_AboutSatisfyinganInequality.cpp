@@ -11,16 +11,16 @@ int main()
     
     while(t--)
     {
-        int n;
+        long long n;
         cin>>n;
         
-        vector<int> a(n);
+        vector<long long> a(n);
         for(int i=0;i<n;i++)
         {
             cin>>a[i];
         }
         
-        vector<int> idxs;
+        vector<long long> idxs;
         
         for(int i=0;i<n;i++)
         {
@@ -30,12 +30,12 @@ int main()
             }
         }
         
-        int res = 0;
-        int sz = idxs.size();
+        long long res = 0;
+        long long sz = idxs.size();
         
-        for(int i=1;i<sz;i++)
+        for(int i=0;i<sz;i++)
         {
-            int idx = lower_bound(idxs.begin(),idxs.begin()+i,a[idxs[i]-1])-idxs.begin();
+            long long idx = lower_bound(idxs.begin(),idxs.end(),a[idxs[i]-1])-idxs.begin();
             
             res += idx;
             
