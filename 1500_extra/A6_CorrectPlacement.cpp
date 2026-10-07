@@ -41,13 +41,46 @@ int main()
 
         sort(a.begin(),a.end(),MyCmp);
 
+        for(int i=1;i<n;i++)
+        {
+            a[i][1] = min(a[i][1],a[i-1][1]);
+        }
+
         vector<int> result(n,-1);
 
         for(int i=1;i<n;i++)
         {
-            if((a[i][0] > a[0][0]) && (a[i][1] > a[0][1]))
+            int l = 0;
+            int r = i-1;
+
+            int res = -1;
+
+            while(l <= r)
             {
-                result[a[i][2]-1] = a[0][2];
+                int mid = l + (r-l)/2;
+
+                if((a[mid][0] < a[i][0]) && (a[mid][1] < a[i][1]))
+                {
+                    res = mid;
+                    break;
+                }
+                else if((a[mid][0] == a[i][0]) && (a[mid][1] < a[i][1]))
+                {
+                    r = mid-1;
+                }
+                else if(a[mid][1]  > a[i][1])
+                {
+                    l = mid+1;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if(res != -1)
+            {
+                result[a[i][2]-1] = a[res][2];
             }
         }
 
